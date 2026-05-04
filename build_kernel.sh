@@ -1,8 +1,13 @@
 #!/bin/bash
 
-export PLATFORM_VERSION=11
-export ANDROID_MAJOR_VERSION=r 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+
 export ARCH=arm64
-export SEC_BUILD_CONF_VENDOR_BUILD_OS=13
-make exynos9830-x1slte_defconfig
-make
+export PATH="$SCRIPT_DIR/toolchain/clang-r416183b/bin:${PATH}"
+export LLVM=1
+export LLVM_IAS=1
+export CROSS_COMPILE=aarch64-linux-gnu-
+
+scripts/kconfig/merge_config.sh -m -O . arch/arm64/configs/exynos9830_defconfig arch/arm64/configs/r8s.config arch/arm64/configs/ksu.config
+make KCONFIG_ALLCONFIG=.config alldefconfig
+make --jobs=$(nproc)
