@@ -448,11 +448,12 @@ extern int ksu_handle_faccessat(int *dfd, const char __user **filename_user,
 
 SYSCALL_DEFINE3(faccessat, int, dfd, const char __user *, filename, int, mode)
 {
-	return do_faccessat(dfd, filename, mode);
-}
 #ifdef CONFIG_KSU_MANUAL_HOOK
 	ksu_handle_faccessat(&dfd, &filename, &mode, NULL);
-#endif
+#endi
+	return do_faccessat(dfd, filename, mode);
+}
+
 SYSCALL_DEFINE2(access, const char __user *, filename, int, mode)
 {
 	return do_faccessat(AT_FDCWD, filename, mode);
