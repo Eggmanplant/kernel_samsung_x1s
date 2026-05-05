@@ -35,9 +35,9 @@ echo "--- Iniciando Compilação (j$(nproc)) ---"
 make O="$OUT_DIR" --jobs=$(nproc)
 
 # 5. Verificação do Binário
-if [ -f "$OUT_DIR/arch/arm64/boot/Image.gz-dtb" ]; then
+if [ -f "$OUT_DIR/arch/arm64/boot/Image" ]; then
     echo "--- SUCESSO ---"
-    echo "Kernel compilado em: $OUT_DIR/arch/arm64/boot/Image.gz-dtb"
+    echo "Kernel compilado em: $OUT_DIR/arch/arm64/boot/Image"
     # Checar disfarce de versão no binário
     strings "$OUT_DIR/arch/arm64/boot/Image" | grep "6.12"
 else
