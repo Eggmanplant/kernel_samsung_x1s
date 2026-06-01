@@ -5,4 +5,4 @@ cp arch/arm64/boot/Image AnyKernel3
 cp anykernel.sh AnyKernel3
 
 cd AnyKernel3
-zip -r9 ../r8s-Kernel3.zip * -x .git README.md *placeholder
+zip -r9 ../kernel.zip * -x .git README.md *placeholder
