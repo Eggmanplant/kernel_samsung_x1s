@@ -11,7 +11,7 @@ jobs:
 
       - name: Download Toolchain
         run: |
-          mkdir ${GITHUB_WORKSPACE}/toolchain/clang-r416183b
+          mkdir -p ${GITHUB_WORKSPACE}/toolchain/clang-r416183b
           curl "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/428d18d9732aa7ebfcaed87a582d86155db878d4/clang-r416183b.tar.gz" | tar --directory=${GITHUB_WORKSPACE}/toolchain/clang-r416183b --extract --gzip
           git clone https://github.com/osm0sis/AnyKernel3.git
           curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash
