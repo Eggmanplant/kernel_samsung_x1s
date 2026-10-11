@@ -374,15 +374,6 @@ static long sr100_dev_ioctl(struct file* filp, unsigned int cmd,
       break;
 #endif
 
-    case SR100_GET_ANT_CONNECTION_STATUS:
-      UWB_LOG_INFO("SR100_GET_ANT_CONNECTION_STATUS Enter\n");
-      if((int)sr100_dev->ant_connection_status_gpio > 0) {
-        ret = !gpio_get_value(sr100_dev->ant_connection_status_gpio);
-      } else {
-        ret = -1;
-      }
-      UWB_LOG_INFO("SR100_GET_ANT_CONNECTION_STATUS ret =%d \n", ret);
-      break;
     default:
       UWB_LOG_INFO(" Error case\n");
       ret = -EINVAL;  // ToDo: After adding proper switch cases we have to
@@ -1171,7 +1162,7 @@ static int sr100_probe(struct spi_device* spi) {
 
   sr100_dev->spi = spi;
   sr100_dev->sr100_device.minor = MISC_DYNAMIC_MINOR;
-  sr100_dev->sr100_device.name = "sr100";
+  sr100_dev->sr100_device.name = "srxxx";
   sr100_dev->sr100_device.fops = &sr100_dev_fops;
   sr100_dev->sr100_device.parent = &spi->dev;
   sr100_dev->irq_gpio = platform_data->irq_gpio;
@@ -1335,7 +1326,7 @@ static struct of_device_id sr100_dt_match[] = {{
 static struct spi_driver sr100_driver = {
     .driver =
         {
-         .name = "sr100",
+         .name = "srxxx",
          .bus = &spi_bus_type,
          .owner = THIS_MODULE,
          .of_match_table = sr100_dt_match,
